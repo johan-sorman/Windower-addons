@@ -14,6 +14,10 @@ default = char
 end
 
 windower.send_command('exec %s':format(default))
-windower.send_command('lua unload init')
-windower.add_to_chat(123,'------- Loaded init ('.. charname .. ') profile -------')
+coroutine.sleep(15) -- Sleep to allow all system messages to load, so log message will appear in the bottom
+windower.add_to_chat(123,'------- Loaded ('.. charname .. ') init profile -------')
+end)
+
+windower.register_event('logout', function(charname)
+    windower.send_command('lua reload init') -- Make sure init is still loaded when switching characters
 end)
