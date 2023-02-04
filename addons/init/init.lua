@@ -1,6 +1,6 @@
 _addon.name = 'init'
 _addon.author = 'Selk, modified by Sampi'
-_addon.version = '0.1'
+_addon.version = '0.1.1'
 
 files = require 'files'
 default = 'init_default'
