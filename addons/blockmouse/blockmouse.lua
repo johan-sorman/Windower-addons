@@ -10,9 +10,8 @@ windower.register_event('unload', function()
     windower.register_event('mouse', function() return false end)
 end)
 
-windower.register_event('addon command', function(input, ...)
+windower.register_event('addon command', function(input)
     local cmd = string.lower(input)
-    local args = {...}
 
     if cmd == 'on' then
         windower.register_event('mouse', function() return true end)
@@ -26,7 +25,7 @@ windower.register_event('addon command', function(input, ...)
     if cmd == 'help' then
         windower.add_to_chat(4, '------ Blockmouse ------')
         windower.add_to_chat(4, 'help - this message')
-        windower.add_to_chat(4, 'on - Blocks input from mouse. Note, sometimes buggs out if write in console')
+        windower.add_to_chat(4, 'on - Blocks input from mouse. Note, sometimes buggs out if writen in console')
         windower.add_to_chat(4, 'off - Unblocks input from mouse.')
     end
 end)
