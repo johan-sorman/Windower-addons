@@ -3,7 +3,6 @@ _addon.author = 'Selk, modified by Sampi'
 _addon.version = '0.1'
 
 files = require 'files'
-
 default = 'init_default'
 
 windower.register_event('login',function (name)
