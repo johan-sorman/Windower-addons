@@ -8,10 +8,10 @@ Core was developed by Selk (<a href="https://www.ffxiah.com/forum/topic/55581/se
 
 ## Instructions ##
 
-1. Create addon/init/init.lua
-2. Rename init.txt to init_default.txt
-3. Create init.txt with the only line: lua load init (and any other lines you wish to share with other characters / load prior to logging in)
-4. Create init_playername.txt (lowercase) files to override the init for those players.
+1. Rename init.txt to init_default.txt (found in `scripts` folder)
+2. Create init.txt with the only line: `lua load init` (and any other lines you wish to share with other characters / load prior to logging in)
+3. Create init_yourplayername.txt (lowercase) files to override the init for those players.</br> 
+       Example: `init_sampi.txt`
 
 ## Commands ##
 
