@@ -1,6 +1,6 @@
 _addon.name = 'init'
 _addon.author = 'Selk, modified by Sampi'
-_addon.version = '0.1.1'
+_addon.version = '0.1'
 
 files = require 'files'
 default = 'init_default'
@@ -18,6 +18,7 @@ coroutine.sleep(15) -- Sleep to allow all system messages to load, so log messag
 windower.add_to_chat(123,'------- Loaded ('.. charname .. ') init profile -------')
 end)
 
-windower.register_event('logout', function(charname)
-    windower.send_command('lua reload init') -- Make sure init is still loaded when switching characters
-end)
+windower.register_event('logout', function(name)
+    windower.send_command('lua unloadall')
+    windower.send_command('lua load init')
+end:delay(3))
