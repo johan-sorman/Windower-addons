@@ -23,7 +23,7 @@ windower.register_event('addon command', function(input)
         do
             local player = windower.ffxi.get_player()
             if player ~= nil then
-                if not S(player.buffs):contains(251) then
+                if not S(player.buffs):contains(251) then -- 251 = Food buff, can be found in resources/buffs.lua
                     windower.send_command('input /item "' .. settings.food .. '" <me>')
                 end
             end
