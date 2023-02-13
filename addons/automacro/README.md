@@ -2,7 +2,7 @@
 **Author:**  Core: Mapogo. Updated by: Sampi<br/>
 **Version:**  1.1<br>
 **Date:** Feb 2023.<br>
-**Description:** Addon that will block input from mouse. A must have for controller users.
+**Description:** Addon that automatically use macro action.
 <br>
 
 ## Commands ##
