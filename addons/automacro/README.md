@@ -1,5 +1,6 @@
 ## Automacro
-**Author:**  Core: Mapogo. Updated by: Sampi<br/>
+**Author:** Sampi (forked from <a href="https://gist.github.com/gwbischof/01f00e462a4fa8c77f685a14c5df9674" target="_blank">Mapogo</a>)
+<br>
 **Version:**  1.1<br>
 **Date:** Feb 2023.<br>
 **Description:** Addon that automatically use macro action.
