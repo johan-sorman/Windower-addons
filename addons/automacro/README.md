@@ -17,5 +17,9 @@
 
 ## To Do ##
 
-`Add feature to configure addon via settings file`
+~~Add feature to configure addon via settings file~~
+
+## Settings ##
+
+By default settings.xml will set wait to 6 seconds. This can be configured in `data/settings.xml` file.
 
