@@ -19,15 +19,19 @@ windower.register_event('addon command', function(input)
 
     if cmd == 'on' then
         windower.add_to_chat(123, '------ food tracking ON (checkfood) ------')
-        local player = windower.ffxi.get_player()
-        if player ~= nil then
-            if not S(player.buffs):contains(251) then
-                windower.send_command('input /item "' .. settings.food .. '" <me>')
+        while (true)
+        do
+            local player = windower.ffxi.get_player()
+            if player ~= nil then
+                if not S(player.buffs):contains(251) then
+                    windower.send_command('input /item "' .. settings.food .. '" <me>')
+                end
             end
         end
     end
     if cmd == 'off' then
         windower.add_to_chat(123, '------ food tracking OFF (checkfood) ------')
+        windower.send_command('lua r checkfood')
     end
 
     if cmd == 'help' then
