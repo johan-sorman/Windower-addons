@@ -25,7 +25,7 @@ windower.register_event('addon command', function(input)
     if cmd == 'help' then
         windower.add_to_chat(4, '------ Blockmouse ------')
         windower.add_to_chat(4, 'help - this message')
-        windower.add_to_chat(4, 'on - Blocks input from mouse. Note, sometimes buggs out if writen in console')
+        windower.add_to_chat(4, 'on - Blocks input from mouse.')
         windower.add_to_chat(4, 'off - Unblocks input from mouse.')
     end
 end)
