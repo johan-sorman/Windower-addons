@@ -25,6 +25,7 @@ windower.register_event('addon command', function(input)
             if player ~= nil then
                 if not S(player.buffs):contains(251) then -- 251 = Food buff, can be found in resources/buffs.lua
                     windower.send_command('input /item "' .. settings.food .. '" <me>')
+                    windower.add_to_chat(123, '------ Used ' .. settings.food .. ' ------')
                 end
             end
         end
