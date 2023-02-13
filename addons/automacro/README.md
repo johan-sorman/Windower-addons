@@ -1,4 +1,4 @@
-## Blockmouse
+## Automacro
 **Author:**  Core: Mapogo. Updated by: Sampi<br/>
 **Version:**  1.1<br>
 **Date:** Feb 2023.<br>
