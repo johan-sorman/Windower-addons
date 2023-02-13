@@ -3,9 +3,15 @@ _addon.version = '1.1'
 _addon.author = 'Mapogo, Sampi'
 _addon.commands = {'am','automacro'}
 
-sleep_time = 5
+config = require('config')
+defaults = {}
+defaults.sleep_time = 6
+
+
+settings = config.load('data/settings.xml', defaults)
 
 windower.register_event('load', function()
+
 end)
 windower.register_event('addon command', function(input)
     local cmd = string.lower(input)
@@ -13,7 +19,7 @@ windower.register_event('addon command', function(input)
         windower.add_to_chat(2, 'Automacro ON')
         while (true)
         do
-            coroutine.sleep(sleep_time) -- Wait time
+            coroutine.sleep(settings.sleep_time) -- Wait time
             windower.send_command('setkey ctrl down;') -- can be changed to alt if you want to use alt + 1 (for example)
             windower.send_command('setkey 1 down;') -- setkey 1 = 1st action in your macrobook
             coroutine.sleep(0.1)
