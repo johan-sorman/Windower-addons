@@ -7,7 +7,7 @@
 
 ## Commands ##
 
-`syntax: //checkfood or //cf`
+`syntax: //checkfood`
 
 | Command | Description |
 | --- | --- |
