@@ -1,7 +1,7 @@
 _addon.name = 'checkfood'
 _addon.version = '1.0'
 _addon.author = 'Sampi'
-_addon.commands = { 'checkfood', 'cf' }
+_addon.commands = { 'checkfood' }
 
 res = require('resources')
 config = require('config')
