@@ -1,6 +1,6 @@
 ## Init
 **Author:**  Selk, Sampi<br/>
-**Version:**  0.1.1<br>
+**Version:**  1.0<br>
 **Date:** Feb 2023.<br>
 **Description:** Addon that will load init file based on logged-in character. 
 <br>
