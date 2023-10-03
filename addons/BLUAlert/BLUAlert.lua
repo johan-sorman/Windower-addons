@@ -100,7 +100,7 @@ windower.register_event('incoming text', function(original, modified, original_m
         -- Melucine's Modifications (Ver 1.1.0.2):
 
         pName = windower.ffxi.get_player().name
-        coroutine.sleep(3)
-        windower.add_to_chat(154, pName .. " learned ".. spell_name .."!")
+        coroutine.sleep(5)
+        windower.add_to_chat(154, pName .. " learns ".. spell_name .."!")
     end
 end)
