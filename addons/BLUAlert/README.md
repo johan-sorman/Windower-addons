@@ -1,7 +1,9 @@
-Are you sick and tired of watching your chat log like a hawk when hunting for new Blue Magic spells, waiting for the monster to use that one ability? Are you sick and tired of going AFK until the monster dies, losing out on precious time that could be better spent in other areas of FFXI?
+## Automacro
+**Author:** Kainsin, (Modified by Melucine)
+<br>
+**Version:**  1.1.0.2<br>
+**Date:** Oct, 2023.<br>
+**Description:** This addon needs no introduction but for those of you who never heard of BLUAlert, it is an Addon for Windower that will notify the player if a Blue Magic spell isn't learned. Upon learning the spell the Addon will play a .wav file and also write a message to the chat log to notify the player.
+<be>
 
-If so then your savior is here! BLUAlert!
-
-This add-on will monitor monster abilities for Blue Magic spells that you don't know. When one is detected it will write a message into chat and play a sound to notify you.
-
-Now you can relax while you AFK with the knowledge that you'll be able to come back and kill the monster right after it uses that one ability!
+The original Addon can be found in the Windower launcher (Under the Addon tab).
