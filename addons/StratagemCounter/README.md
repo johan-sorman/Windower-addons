@@ -8,9 +8,9 @@ Edit and improved by Melucine
 <br>
 
 ## Known Issues ##
-Sometimes bugs out and display incorrect value. When this happens it usually incorrect by 1 stratagem and updates when a new charge is available.
+Sometimes bugs out and displays incorrect values. When this happens it is usually incorrect by 1 stratagem and updates when a new charge is available.
 
 ## Settings ##
 
-All settings can be adjusted in the .lua file. Only user setting is font settings and position.
+All settings can be adjusted in the `.lua` file. The only user setting are font settings and position.
 
