@@ -14,7 +14,7 @@ function handleCommand(command, argument)
     local cmd = string.lower(command)
 
     -- Help text
-    if  cmd == 'help' then
+    if cmd == 'help' then
         windower.add_to_chat(207, 'Follow Help: ')
         windower.add_to_chat(207, '//fo help - This command/info. ')
         windower.add_to_chat(207, '//fo follow <name> - To start follow.  ')
@@ -56,68 +56,3 @@ end)
 function capitalize(str)
     return str:gsub("^%l", string.upper)
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- windower.register_event('load', function()
--- end)
-
--- windower.register_event('unload', function()
--- end)
-
-
-
--- -- Command handler function
--- function handleCommand(command, argument)
---     if command:lower() == 'follow' and argument then
---         local targetName = argument:capitalize() -- Assuming capitalize function is available
---         local target = windower.ffxi.get_mob_by_name(targetName)
-
---         if target then
---             windower.ffxi.follow(target.index)
---             windower.add_to_chat(207, 'Now following ' .. targetName)
---         else
---             windower.add_to_chat(207, 'Player not found: ' .. targetName)
---         end
---     end
-
---     if command:lower() == 'stop' then
---         windower.ffxi.follow()
---         windower.add_to_chat(207, 'Stopped following')
---     end
-    
--- end
-
--- -- Register the command handler
--- windower.register_event('addon command', handleCommand)
-
-
-
--- function string:capitalize()
---     return self:gsub("^%l", string.upper)
--- end
