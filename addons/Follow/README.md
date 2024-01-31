@@ -22,4 +22,4 @@ As regular /follow if your followed character blinks from equipment swapping the
 
 ## Settings ##
 
-There is no settings.
+There are no settings.
