@@ -88,19 +88,29 @@ windower.register_event('action', function(action)
     end
 end)
 
---Prince Headache's Modifications (Ver 1.1.0.1):
+-- Keep track of learned spells to avoid duplicate messages
+learned_spells = {}
 
 -- Plays a sound when Blue Magic is learned
 windower.register_event('incoming text', function(original, modified, original_mode, modified_mode, blocked)
+
     -- Check if the modified message contains "learns" followed by a Blue Magic spell name
     local spell_name = modified:match("learns%s+(.+)!")
     if spell_name and find_blu_spell(spell_name) then
-        windower.play_sound(windower.addon_path..'sounds/BlueMagicLearned.wav')
 
-        -- Melucine's Modifications (Ver 1.1.0.2):
+        -- Check if the spell has already been learned to avoid duplicates
+        if not learned_spells[spell_name] then
+            windower.play_sound(windower.addon_path..'sounds/BlueMagicLearned.wav')
 
-        pName = windower.ffxi.get_player().name
-        coroutine.sleep(8)
-        windower.add_to_chat(154, pName .. " learns ".. spell_name .."!")
+            player = windower.ffxi.get_player().name
+            -- Adding a 8 second sleep to make it readable in chat and not get lost in any spam.
+            coroutine.sleep(8) 
+
+            -- Sending the message to chatlog
+            windower.add_to_chat(154, player .. " learns " .. spell_name .. "!")
+            
+            -- Mark the spell as learned to avoid duplicate messages
+            learned_spells[spell_name] = true
+        end
     end
 end)
