@@ -1,6 +1,6 @@
 _addon.name = 'playerinfo'
-_addon.author = 'Melucine'
-_addon.version = '1.0.0'
+_addon.author = 'Melucine@Bahamut'
+_addon.version = '1.0.1'
  
 texts = require('texts')
 config = require('config')
@@ -11,21 +11,12 @@ config = require('config')
 
 default_settings = {
     bg = {
-        alpha = 100,
-        padding = { top = 0, bottom = -5, left = 0, right = 0 }
+        alpha = 70,
     },
-    padding = 0,
     text = {
         font = 'Consolas',  
         size = 10,
         bold = true,
-        stroke = {
-            width = 3,
-            red = 0,
-            green = 0,
-            blue = 0,
-            alpha = 255
-        }
     }
 }
 
@@ -37,10 +28,19 @@ text_box = texts.new(settings)
 --------------------------------------------------------------------------
 
 windower.register_event('load', function()
-  local player = windower.ffxi.get_player()
-  local new_text = player.main_job .. player.main_job_level ..'/' .. player.sub_job .. player.sub_job_level
-  text_box:text(new_text)
-  text_box:visible(true) -- Display the box with Job/SubJob
+    local main_color = '\\cs(255,170,0)'  -- Orange color
+    local sub_color = '\\cs(255,0,0)'     -- Red color
+    local player = windower.ffxi.get_player()
+
+    jobinfo = ' ' ..
+        main_color .. player.main_job .. ' ' .. player.main_job_level ..
+        ' \\cr/ ' ..
+        sub_color .. player.sub_job .. ' ' .. player.sub_job_level ..
+        '\\cr'
+    
+    text_box:text(jobinfo)
+    text_box:visible(true)
+    
 end)
 
 --------------------------------------------------------------------------
@@ -48,5 +48,5 @@ end)
 --------------------------------------------------------------------------
 
 windower.register_event('unload', function()
-    text_box:visible(false) -- Hide the textbox
+    text_box:visible(false)
   end)
