@@ -18,7 +18,7 @@ function handleCommand(command, argument)
         windower.add_to_chat(207, 'Follow Help: ')
         windower.add_to_chat(207, '//fo help - This command/info. ')
         windower.add_to_chat(207, '//fo follow <name> - To start follow.  ')
-        windower.add_to_chat(207, '//fo follow stop - Stops follow.')
+        windower.add_to_chat(207, '//fo stop - Stops follow.')
     end
 
     -- Stop command
