@@ -1,5 +1,7 @@
-**Author:** Mujihina
-**Version:** v 1.1
+**Author:** Mujihina (modified by Melucine)
+<br>
+**Version:** v 1.3
+
 
 # Widescantool #
 
@@ -18,6 +20,8 @@ This addon will offer you filters and alerts for widescan data, and proximity no
 ## Configuration ##
 
 Filters/Alerts are saved locally to a config file. 
+
+`alert.wav` in `data` folder will play a sound when a tracked NM or PH spawns.
 
 
 ## Syntax ##
