@@ -21,6 +21,8 @@ This addon will offer you filters and alerts for widescan data, and proximity no
 
 Filters/Alerts are saved locally to a config file. 
 
+`alert.wav` in `data` folder will play a sound when a tracked NM or PH spawns.
+
 
 ## Syntax ##
 
