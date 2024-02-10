@@ -78,7 +78,7 @@ function load_defaults()
     global.defaults.alertbox.bg.green = 0
     global.defaults.alertbox.bg.blue = 0
     global.defaults.alertbox.padding = 5
-    global.defaults.alertbox_default_string = "   ! ALERT !"
+    global.defaults.alertbox_default_string = "ALERT"
 
     global.player_name = windower.ffxi.get_player().name
     global.settings_file = "data/%s.xml":format(global.player_name)
@@ -119,8 +119,10 @@ function load_defaults()
     if (type (global.settings.worldalerts) == 'string') then
         --print ("wst: adjusting world alerts: string -> set")
         global.settings.worldalerts = S(global.settings.worldalerts:split(','))
-    end        
-       
+    end      
+    
+    
+
     global.alertbox = lib.texts.new (global.defaults.alertbox_default_string, global.settings.alertbox)
 
     -- Performane configurables
@@ -144,6 +146,21 @@ function load_defaults()
     global.memory_scan_i = global.skip_memory_scans - 1
     
     update_area_info()
+end
+
+-- Play a sound when alert box is triggered
+function alert_sound()
+    if not sound_played then
+        local sound_file = windower.addon_path .. 'data/alert.wav'
+        local file = io.open(sound_file, "r")
+        if file then
+            file:close()
+            windower.play_sound(sound_file)    
+            sound_played = true
+        else
+            print("Error: Sound file not found at path:", sound_file)        
+        end
+    end
 end
 
 
@@ -546,8 +563,11 @@ function wst_process_packets (id, original, modified, injected, blocked)
         if (alert_count < 1) then
             global.alertbox:hide()
         else
+            local color = '\\cs(255,165,0)' -- Red color (RGB: 255, 0, 0)
+            local formatted_text = '%s%s\n%s':format(color, global.defaults.alertbox_default_string, alert_list:concat('\n'))
             global.alertbox:clear()
-            global.alertbox:text ("%s\n%s":format(global.defaults.alertbox_default_string, alert_list:concat ('\n')))
+            alert_sound()
+            global.alertbox:text(formatted_text)
             global.alertbox:show()
         end
     end
