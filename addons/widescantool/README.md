@@ -1,5 +1,7 @@
-**Author:** Mujihina
-**Version:** v 1.1
+**Author:** Mujihina (modified by Melucine)
+<br>
+**Version:** v 1.3
+
 
 # Widescantool #
 
