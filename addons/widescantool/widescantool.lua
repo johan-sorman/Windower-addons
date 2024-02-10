@@ -156,6 +156,7 @@ function alert_sound()
         if file then
             file:close()
             windower.play_sound(sound_file)    
+            windower.add_to_chat(204, '---- NM or Placeholder spawned! ----')
             sound_played = true
         else
             print("Error: Sound file not found at path:", sound_file)        
