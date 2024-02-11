@@ -3,7 +3,12 @@
 **Author:** Melucine
 <br>
 **Version:** 1.1
-<br>
+<be>
+
+### Requirements
+- Windower
+- Shortcut addon installed and loaded (lua load shortcut)
+
 
 ### Usage
 
