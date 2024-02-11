@@ -14,9 +14,10 @@
 
 Commands: <br>
 `//bt` or `//bufftracker`
-<br>
-- `//bt add <buffname>`
-- `//bt remove <buffname>`
+<be>
+- auto-translate value works but if you add for example `hasso` and try remove ((Hasso)) with auto-translate, it will not work
+- `//bt add <buffname>` 
+- `//bt remove <buffname>` 
 - `//bt list`
 - `//bt start`
 - `//bt clear`
