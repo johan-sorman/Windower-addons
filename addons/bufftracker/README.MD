@@ -7,7 +7,7 @@
 
 ### Requirements
 - Windower 4
-- Shortcut addon installed and loaded (lua load shortcut)
+- Shortcut addon installed and loaded (`lua load shortcut`)
 
 
 ### Usage
