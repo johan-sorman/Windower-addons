@@ -16,8 +16,8 @@ Commands: <br>
 - `//bt start`
 - `//bt clear`
 
-By default it will loop through the list of tracked buffs every `240` seconds. 
+By default, it will loop through the list of tracked buffs every `240` seconds. 
 
 ### To do
 <br>
-- Add additional input for desired sleep period
+- Add additional input for the desired sleep period
