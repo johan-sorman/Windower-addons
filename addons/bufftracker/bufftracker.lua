@@ -47,7 +47,9 @@ function checkAndActivateBuff()
         end
         coroutine.sleep(5)
     end
+    coroutine.sleep(240) 
 end
+
 
 -----------------------------------------------------------------------------
 -- Handle command
