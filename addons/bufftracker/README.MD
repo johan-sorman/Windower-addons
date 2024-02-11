@@ -1,8 +1,8 @@
 ## Bufftracker
 
-**Author: ** Melucine
+**Author:** Melucine
 <br>
-**Version: ** 1.1
+**Version:** 1.1
 <br>
 
 ### Usage
