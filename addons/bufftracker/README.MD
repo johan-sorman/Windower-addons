@@ -6,7 +6,7 @@
 <be>
 
 ### Requirements
-- Windower
+- Windower 4
 - Shortcut addon installed and loaded (lua load shortcut)
 
 
