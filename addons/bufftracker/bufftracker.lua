@@ -9,7 +9,7 @@ _addon.commands = {'Bufftracker', 'bt'}
 
 local res = require('resources')
 local zones = require('restricted_zones')
-local buffRecast = require('recast')
+local defaultSleep = require('recast')
 
 -----------------------------------------------------------------------------
 -- Check Active Buff
@@ -27,7 +27,6 @@ function checkAndActivateBuff()
         local currentZoneID = windower.ffxi.get_info().zone
         local player = windower.ffxi.get_player()
 
-        -- Check if the player is in a restricted zone
         local isRestrictedZone = false
         for _, zone in pairs(zones) do
             if currentZoneID == zone.id then
@@ -59,7 +58,7 @@ function checkAndActivateBuff()
             end
         end
 
-        coroutine.sleep(240)
+        coroutine.sleep(defaultSleep)
     end
 end
 
