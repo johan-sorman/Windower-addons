@@ -25,4 +25,5 @@ Commands: <br>
 By default, it will loop through the list of tracked buffs every `240` seconds. 
 
 ### To do
-- [ ] Add additional input for the desired sleep period
+- [x] ~Add additional input for the desired sleep period~ <br>
+**Won't implement** - Use Gearswap instead if you want that type of functionality.
