@@ -14,4 +14,4 @@ Well then, you can use this addon.
 <br>
 Example: `//countdown start 15min`
 
-![demo](/demo.jpg?raw=true)
+![demo](https://github.com/johan-sorman/Windower-addons/blob/main/addons/Countdown/demo.jpg)
