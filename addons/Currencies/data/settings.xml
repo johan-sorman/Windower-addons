@@ -1,0 +1,43 @@
+<?xml version="1.1" ?>
+<settings>
+    <global>
+        <bg>
+            <alpha>110</alpha>
+            <blue>0</blue>
+            <green>0</green>
+            <red>0</red>
+            <visible>true</visible>
+        </bg>
+        <flags>
+            <bold>true</bold>
+            <bottom>false</bottom>
+            <draggable>true</draggable>
+            <italic>false</italic>
+            <right>false</right>
+        </flags>
+        <padding>4</padding>
+        <pos>
+            <x>400</x>
+            <y>30</y>
+        </pos>
+        <text>
+            <alpha>255</alpha>
+            <blue>0</blue>
+            <bold>true</bold>
+            <font>Consolas</font>
+            <fonts>
+
+            </fonts>
+            <green>70</green>
+            <red>255</red>
+            <size>12</size>
+            <stroke>
+                <alpha>0</alpha>
+                <blue>0</blue>
+                <green>0</green>
+                <red>0</red>
+                <width>1</width>
+            </stroke>
+        </text>
+    </global>
+</settings>
