@@ -13,5 +13,7 @@ Well then, you can use this addon.
 `//countdown start ##`
 <br>
 Example: `//countdown start 15min`
+<br>
+accepts in these formats: `XX:XX:XX`, `Xmin, X min, Xsec, X sec`
 
 ![demo](https://github.com/johan-sorman/Windower-addons/blob/main/addons/Countdown/demo.jpg)
