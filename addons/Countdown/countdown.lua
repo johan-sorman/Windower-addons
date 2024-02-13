@@ -89,8 +89,7 @@ end
 
 function countdownTimer:startCountdown(time)
     if countdown_active then
-        windower.add_to_chat(100, string.format('\30\03[%s]\30\01 Countdown already active.', 'Countdown'))
-        return
+        self:stopCountdown()
     end
     
     local timeInSeconds = parseTime(time)
