@@ -11,19 +11,33 @@ texts = require('texts')
 config = require('config')
 
 default_settings = {
+    pos = {
+        x = 450, 
+        y = 30
+    },  
+    flags = {
+        bold = false,
+        draggable = true
+    },
     text = {
         font = 'Consolas', size = 11, bold = true
     },
     bg = {
-        visible = true, alpha = 80
-    }, 
+        visible = true, alpha = 110
+    },
+    hide_delay = 30,
 }
+
 
 settings = config.load(default_settings)
 text_box = texts.new(settings)
-
+local last_update_time = 0
+-- local hide_delay = 30 -- Seconds before textbox will hide
 
 text_box:visible(false)
+
+
+
 
 local log_results
 local player_name = windower.ffxi.get_info().logged_in and windower.ffxi.get_player().name
@@ -58,11 +72,26 @@ windower.register_event('incoming chunk', function(id, data)
             windower.send_ipc_message(results)
         end
 
+        last_update_time = os.time()
+
+
+
         text_box:text(results)
         text_box:visible(true)
 
         check[id] = nil
     end
+end)
+
+local function auto_hide_text_box()
+    local current_time = os.time()
+    if text_box:visible() and current_time - last_update_time >= settings.hide_delay then
+        text_box:visible(false)
+    end
+end
+
+windower.register_event('time change', function()
+    auto_hide_text_box()
 end)
 
 
