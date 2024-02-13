@@ -1,11 +1,49 @@
+--[[
+Countdown v1.0.0
+
+Copyright © 2024 Melucine
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+* Neither the name of Countdown nor the names of its contributors may be
+used to endorse or promote products derived from this software without
+specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL Mojo BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+]]
+
 _addon.name = 'Countdown'
 _addon.author = 'Melucine'
-_addon.version = '1.0'
+_addon.version = '1.0.0'
 _addon.command = 'countdown'
 
-local engageTimer = {}
+local countdownTimer = {}
 local countdown_handle
 local countdown_active = false
+
+------------------------------------------------------------------------------------------
+-- Onload message
+------------------------------------------------------------------------------------------
+
+windower.register_event('load', function()
+    windower.add_to_chat(16, 'Countdown loaded! See //countdown help')
+end)
 
 ------------------------------------------------------------------------------------------
 -- Parse time and input
@@ -49,10 +87,9 @@ end
 -- Set Countdown
 ------------------------------------------------------------------------------------------
 
-function engageTimer:startCountdown(time)
+function countdownTimer:startCountdown(time)
     if countdown_active then
-        windower.add_to_chat(100, string.format('\30\03[%s]\30\01 Countdown already active.', 'Countdown'))
-        return
+        self:stopCountdown()
     end
     
     local timeInSeconds = parseTime(time)
@@ -63,14 +100,14 @@ function engageTimer:startCountdown(time)
     
     countdown_active = true
     windower.add_to_chat(207, string.format("\30\02Countdown started for \30\01%s seconds.", timeInSeconds))
-    countdown_handle = coroutine.schedule(engageTimer.update, timeInSeconds)
+    countdown_handle = coroutine.schedule(countdownTimer.update, timeInSeconds)
 end
 
 ------------------------------------------------------------------------------------------
 -- Stop countdown
 ------------------------------------------------------------------------------------------
 
-function engageTimer.stopCountdown()
+function countdownTimer.stopCountdown()
     if not countdown_active then
         windower.add_to_chat(100, string.format('\30\03[%s]\30\01 No active countdown to stop.', 'Countdown'))
         return
@@ -80,7 +117,7 @@ function engageTimer.stopCountdown()
     countdown_active = false
 end
 
-function engageTimer.update()
+function countdownTimer.update()
     windower.add_to_chat(100, string.format('\30\03[%s]\30\01 Countdown reached 0!', 'Countdown'))
     countdown_active = false
 end
@@ -99,13 +136,13 @@ windower.register_event('addon command', function(command, time)
         windower.add_to_chat(16, 'Stops current countdown')
 
     elseif command == 'start' then
-        engageTimer:startCountdown(time)
+        countdownTimer:startCountdown(time)
 
     elseif command == 'stop' then
-        engageTimer:stopCountdown()
+        countdownTimer:stopCountdown()
     end
 end)
 
 windower.register_event('zone change', function(new_zone_id, old_zone_id)
-    engageTimer:stopCountdown()
+    countdownTimer:stopCountdown()
 end)
