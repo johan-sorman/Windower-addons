@@ -1,5 +1,5 @@
 _addon.name = 'SparksCounter'
-_addon.author = 'Dean James (Xurion of Bismarck), Melucine@Bahamut'
+_addon.author = 'Dean James (Xurion of Bismarck)'
 _addon.version = '1.1.0'
 
 texts = require('texts')
