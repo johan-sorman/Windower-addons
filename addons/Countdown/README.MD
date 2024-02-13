@@ -1,4 +1,4 @@
-### Countdown
+## Countdown
 
 A simple addon to start a countdown timer. 
 
