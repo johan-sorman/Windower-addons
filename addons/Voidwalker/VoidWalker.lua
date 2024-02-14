@@ -5,9 +5,11 @@ _addon.command = 'vw'
 
 require('tables')
 
-res = require 'resources'
+res = require ('resources')
 config = require('config')
 texts = require('texts')
+require('logger')
+
 defaults = require('settings')
 
 settings = config.load(defaults)
@@ -60,7 +62,6 @@ windower.register_event('incoming text', function(original, modified)
     local new_distance = nil
     local new_target_distance = nil
     
-    -- Extract direction from the chat message
     if string.find(original:lower(), '%ssouth%s*west%s') then
         new_direction = "SW"
         windower.ffxi.turn(3*math.pi/4)
@@ -87,7 +88,6 @@ windower.register_event('incoming text', function(original, modified)
         windower.ffxi.turn(math.pi/2)
     end
 
-    -- Extract tier from the chat message
     if string.find(original:lower(), '.*there seem to be no monsters.*') then
         new_tier = 0
     elseif string.find(original:lower(), '.*feebl.*') then
@@ -105,10 +105,6 @@ windower.register_event('incoming text', function(original, modified)
         new_target_distance = tonumber(captured_target_distance)
     end
 
-
-
-    
-    -- Update direction, tier, and distances if detected
     if new_direction then
         direction = new_direction
         updated = true
@@ -130,10 +126,6 @@ windower.register_event('incoming text', function(original, modified)
     end
     
     if updated then
-        if string.find(original:lower(), 'A monster materializes out of nowhere!') then
-            mark:visible(false)
-            voidwalker_mode = false
-        end
         
         if tier == 0 then
             mark:text(' No NM Detected ')
@@ -146,22 +138,29 @@ windower.register_event('incoming text', function(original, modified)
             voidwalker_mode = true
         end
     end
+    if string.find(original:lower(), 'A monster materializes out of nowhere!') then
+        mark:visible(false)
+        voidwalker_mode = false
+    end
 end)
 
 
 
 windower.register_event('addon command', function(command)
     if command:lower() == 'help' then
-        windower.add_to_chat(8,'VoidWalker: //VW <command>:')
+        log('Commands:')
+        log('//vw help - This message')
+        log('//vw on - display textbox and track VNM')
+        log('//vw off - hide textbox and disable tracking')
     elseif command:lower() == 'on' then
         if voidwalker_mode == false then
-            windower.add_to_chat(8, 'VoidWalker = On')
+            windower.add_to_chat(100, string.format('\30\03[%s]\30\01 ON', 'VoidWalker'))
             voidwalker_mode = true
             mark:visible(true)
         end
     elseif command:lower() == 'off' then
         if voidwalker_mode == true then
-            windower.add_to_chat(8, 'VoidWalker = Off')
+            windower.add_to_chat(100, string.format('\30\03[%s]\30\01 OFF', 'VoidWalker'))
             mark:visible(false)
             voidwalker_mode = false
         end
