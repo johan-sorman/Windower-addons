@@ -1,6 +1,6 @@
 **Author:** [garyfromwork](https://github.com/garyfromwork/ffxi-windower/tree/master/VoidWalker) 
 <br>
-Modified by Melucine (additions to Texts element and clean up settings handling)
+Modified by Melucine
 <br>
 
 -----------------------

@@ -12,10 +12,12 @@ defaults = require('settings')
 
 settings = config.load(defaults)
 
-mark = texts.new('Direction: ${direction} Distance: ${distance||%.2f}', settings.marktxt)
+mark = texts.new('NM Direction → [${direction} (Tier: ${tier})]  Traveled Distance: [${distance||%.2f}]  Target Distance: [${target_distance||0}] ', settings.marktxt)
 
 voidwalker_mode = true
-local direction = nil -- Define direction as a local variable here
+local direction = nil
+local tier = nil
+local target_distance = 0
 
 windower.register_event('status change', function(new, old)
     local s = windower.ffxi.get_mob_by_target('me')
@@ -39,9 +41,9 @@ windower.register_event('prerender', function()
                 local y = marker.y - s.y
                 local z = marker.z - s.z
                 distance = math.sqrt(x * x + y * y + z * z) 
-                mark:text(string.format('NM Direction → [%s] Distance: [%.2f]', direction or 'Unknown', distance))
+                mark:text(string.format(' NM Direction → [%s (Tier: %s)]  Traveled Distance: [%.2f]  Target Distance: [%d] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0))
             else
-                mark:text('NM Direction → [Unknown] Distance: [0.00]')
+                mark:text(' NM Direction → [Unknown (Tier: Unknown)]  Traveled Distance: [0.00]  Target Distance: [0] ')
             end
         end      
     end
@@ -52,40 +54,101 @@ windower.register_event('prerender', function()
 end)
 
 windower.register_event('incoming text', function(original, modified)
-    direction = nil -- Update the global direction variable
+    local updated = false
+    local new_direction = nil 
+    local new_tier = nil 
+    local new_distance = nil
+    local new_target_distance = nil
     
+    -- Extract direction from the chat message
     if string.find(original:lower(), '%ssouth%s*west%s') then
-        direction = "South-West"
+        new_direction = "South-West"
         windower.ffxi.turn(3*math.pi/4)
     elseif string.find(original:lower(), '%ssouth%s*east%s') then
-        direction = "South-East"
+        new_direction = "South-East"
         windower.ffxi.turn(math.pi/4)
     elseif string.find(original:lower(), '%snorth%s*west%s') then
-        direction = "North-West"
+        new_direction = "North-West"
         windower.ffxi.turn(5*math.pi/4)
     elseif string.find(original:lower(), '%snorth%s*east%s') then
-        direction = "North-East"
+        new_direction = "North-East"
         windower.ffxi.turn(7*math.pi/4)
     elseif string.find(original:lower(), '%seast%s') then
-        direction = "East"
+        new_direction = "East"
         windower.ffxi.turn(0)
     elseif string.find(original:lower(), '%swest%s') then
-        direction = "West"
+        new_direction = "West"
         windower.ffxi.turn(math.pi)
     elseif string.find(original:lower(), '%snorth%s') then
-        direction = "North"
+        new_direction = "North"
         windower.ffxi.turn(3*math.pi/2)
     elseif string.find(original:lower(), '%ssouth%s') then
-        direction = "South"
+        new_direction = "South"
         windower.ffxi.turn(math.pi/2)
     end
+
+    -- Extract tier from the chat message
+    if string.find(original:lower(), '.*there seem to be no monsters.*') then
+        new_tier = 0
+    elseif string.find(original:lower(), '.*feebl.*') then
+        new_tier = 1
+    elseif string.find(original:lower(), '.*soft.*') then
+        new_tier = 2
+    elseif string.find(original:lower(), '.*solid.*') then
+        new_tier = 3
+    end
     
-    if direction then
-        -- Update the text element with the detected direction
-        mark:visible(true)  -- Ensure the text element is visible
-        mark.value = string.format('NM Direction → [%s] Distance: [%.2f]', direction, distance or 0)
+    local distance_pattern = "%s*(%d+)%s*yalms[^%d]*%s*(%d+)"
+    local captured_distance, captured_target_distance = string.match(original:lower(), distance_pattern)
+    if captured_distance and captured_target_distance then
+        new_distance = tonumber(captured_distance)
+        new_target_distance = tonumber(captured_target_distance)
+    end
+
+
+
+    
+    -- Update direction, tier, and distances if detected
+    if new_direction then
+        direction = new_direction
+        updated = true
+    end
+    
+    if new_tier ~= nil and new_tier >= 0 and new_tier <= 3 then
+        tier = new_tier
+        updated = true
+    end
+    
+    if new_distance then
+        distance = new_distance
+        updated = true
+    end
+
+    if new_target_distance then
+        target_distance = new_distance
+        updated = true
+    end
+    
+    if updated then
+        if string.find(original:lower(), 'A monster materializes out of nowhere!') then
+            mark:visible(false)
+            voidwalker_mode = false
+        end
+        
+        if tier == 0 then
+            mark:text(' No NM Detected ')
+            mark:visible(true)
+            voidwalker_mode = false       
+
+        elseif tier == 1 or tier == 2 or tier == 3 then
+            mark.value = string.format(' NM Direction → [%s (Tier: %s)]   Traveled Distance: [%.2f]  Target Distance: [%d] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0)
+            mark:visible(true)
+            voidwalker_mode = true
+        end
     end
 end)
+
+
 
 windower.register_event('addon command', function(command)
     if command:lower() == 'help' then
@@ -107,7 +170,7 @@ end)
 
 windower.register_event('load', function()
     if windower.ffxi.get_player() then 
-        coroutine.sleep(2) -- sleeping because jobchange too fast doesn't show new abilities
+        coroutine.sleep(2)
         self = windower.ffxi.get
     end
 end)
