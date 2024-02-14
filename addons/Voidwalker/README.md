@@ -3,7 +3,16 @@
 Modified by Melucine
 <br>
 
------------------------
+```
+Changes by Melucine:
+- Reworked settings for texts module so they get imported from a separate file to make code more readable
+- Reworked the texts element to display;
+  General direction
+  Which tier the NM is
+  Traveled Distance
+  Target Distance based on what the /heal responded with, and the general direction (repeated)
+```
+
 
 ## VoidWalker
 
