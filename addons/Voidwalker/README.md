@@ -1,7 +1,6 @@
-**Author:** [garyfromwork](https://github.com/garyfromwork/ffxi-windower/tree/master/VoidWalker) 
+<sup>**Author:** <br>[garyfromwork](https://github.com/garyfromwork/ffxi-windower/tree/master/VoidWalker), Updated by Melucine
 <br>
-Modified by Melucine
-<br>
+**Version:** <br>1.2.0.0</sup>
 
 ```
 Changes by Melucine:
