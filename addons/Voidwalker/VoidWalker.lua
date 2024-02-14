@@ -12,7 +12,7 @@ defaults = require('settings')
 
 settings = config.load(defaults)
 
-mark = texts.new('NM Direction → [${direction} (Tier: ${tier})]  Traveled Distance: [${distance||%.2f}]  Target Distance: [${target_distance||0}] ', settings.marktxt)
+mark = texts.new('NM Direction → [${direction} (Tier: ${tier})]  Traveled Distance: [${distance||%.2f}]  Target Distance: [${target_distance||0} - ${direction] ', settings.marktxt)
 
 voidwalker_mode = true
 local direction = nil
@@ -41,9 +41,9 @@ windower.register_event('prerender', function()
                 local y = marker.y - s.y
                 local z = marker.z - s.z
                 distance = math.sqrt(x * x + y * y + z * z) 
-                mark:text(string.format(' NM Direction → [%s (Tier: %s)]  Traveled Distance: [%.2f]  Target Distance: [%d] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0))
+                mark:text(string.format(' NM Direction → [%s (Tier: %s)]   Traveled Distance: [%.2f]  Target Distance: [%d - %s] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0, direction or 'Unknown'))
             else
-                mark:text(' NM Direction → [Unknown (Tier: Unknown)]  Traveled Distance: [0.00]  Target Distance: [0] ')
+                mark:text(' NM Direction → [Unknown (Tier: Unknown)]  Traveled Distance: [0.00]  Target Distance: [0 - Unknown] ')
             end
         end      
     end
@@ -62,28 +62,28 @@ windower.register_event('incoming text', function(original, modified)
     
     -- Extract direction from the chat message
     if string.find(original:lower(), '%ssouth%s*west%s') then
-        new_direction = "South-West"
+        new_direction = "SW"
         windower.ffxi.turn(3*math.pi/4)
     elseif string.find(original:lower(), '%ssouth%s*east%s') then
-        new_direction = "South-East"
+        new_direction = "SE"
         windower.ffxi.turn(math.pi/4)
     elseif string.find(original:lower(), '%snorth%s*west%s') then
-        new_direction = "North-West"
+        new_direction = "NW"
         windower.ffxi.turn(5*math.pi/4)
     elseif string.find(original:lower(), '%snorth%s*east%s') then
-        new_direction = "North-East"
+        new_direction = "NE"
         windower.ffxi.turn(7*math.pi/4)
     elseif string.find(original:lower(), '%seast%s') then
-        new_direction = "East"
+        new_direction = "E"
         windower.ffxi.turn(0)
     elseif string.find(original:lower(), '%swest%s') then
-        new_direction = "West"
+        new_direction = "W"
         windower.ffxi.turn(math.pi)
     elseif string.find(original:lower(), '%snorth%s') then
-        new_direction = "North"
+        new_direction = "N"
         windower.ffxi.turn(3*math.pi/2)
     elseif string.find(original:lower(), '%ssouth%s') then
-        new_direction = "South"
+        new_direction = "S"
         windower.ffxi.turn(math.pi/2)
     end
 
@@ -141,7 +141,7 @@ windower.register_event('incoming text', function(original, modified)
             voidwalker_mode = false       
 
         elseif tier == 1 or tier == 2 or tier == 3 then
-            mark.value = string.format(' NM Direction → [%s (Tier: %s)]   Traveled Distance: [%.2f]  Target Distance: [%d] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0)
+            mark.value = string.format(' NM Direction → [%s (Tier: %s)]   Traveled Distance: [%.2f]  Target Distance: [%d - %s] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0, direction or 'Unknown')
             mark:visible(true)
             voidwalker_mode = true
         end
