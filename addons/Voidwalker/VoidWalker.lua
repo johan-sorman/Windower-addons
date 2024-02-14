@@ -10,35 +10,12 @@ config = require('config')
 texts = require('texts')
 defaults = require('settings')
 
-local function angle_to_cardinal(angle)
-    local directions = {
-        { "North", 0 },
-        { "North-East", 45 },
-        { "East", 90 },
-        { "South-East", 135 },
-        { "South", 180 },
-        { "South-West", 225 },
-        { "West", 270 },
-        { "North-West", 315 },
-        { "North", 360 }
-    }
-
-    for i = 1, #directions - 1 do
-        if angle >= directions[i][2] and angle < directions[i + 1][2] then
-            return directions[i][1]
-        end
-    end
-
-    return directions[#directions][1]
-end
-
-
 settings = config.load(defaults)
 
-
-mark = texts.new('Direction: ${direction}  | Distance: ${distance||%.2f}', settings.marktxt)
+mark = texts.new('Direction: ${direction} Distance: ${distance||%.2f}', settings.marktxt)
 
 voidwalker_mode = true
+local direction = nil -- Define direction as a local variable here
 
 windower.register_event('status change', function(new, old)
     local s = windower.ffxi.get_mob_by_target('me')
@@ -62,17 +39,9 @@ windower.register_event('prerender', function()
                 local y = marker.y - s.y
                 local z = marker.z - s.z
                 distance = math.sqrt(x * x + y * y + z * z) 
-                local direction = math.atan2(y, x)
-                if direction < 0 then
-                    direction = direction + 2 * math.pi
-                end
-                direction = math.deg(direction)
-                
-                local cardinal_direction = angle_to_cardinal(direction)
-
-                mark:text(string.format('Direction: [%s]  | Distance: [%.2f]', cardinal_direction, distance))
+                mark:text(string.format('NM Direction → [%s] Distance: [%.2f]', direction or 'Unknown', distance))
             else
-                mark:text('Direction: [Unknown]  | Distance: [0.00]')
+                mark:text('NM Direction → [Unknown] Distance: [0.00]')
             end
         end      
     end
@@ -83,51 +52,54 @@ windower.register_event('prerender', function()
 end)
 
 windower.register_event('incoming text', function(original, modified)
-    local direction = nil
+    direction = nil -- Update the global direction variable
     
-    if string.find(original:lower(), 'yalms northeast') then
-        direction = "North-East"
-        windower.ffxi.turn(7*math.pi/4)
-    elseif string.find(original:lower(), 'yalms northwest') then
-        direction = "North-West"
-        windower.ffxi.turn(5*math.pi/4)
-    elseif string.find(original:lower(), 'yalms southwest') then
+    if string.find(original:lower(), '%ssouth%s*west%s') then
         direction = "South-West"
         windower.ffxi.turn(3*math.pi/4)
-    elseif string.find(original:lower(), 'yalms southeast') then
+    elseif string.find(original:lower(), '%ssouth%s*east%s') then
         direction = "South-East"
         windower.ffxi.turn(math.pi/4)
-    elseif string.find(original:lower(), 'yalms east') then
+    elseif string.find(original:lower(), '%snorth%s*west%s') then
+        direction = "North-West"
+        windower.ffxi.turn(5*math.pi/4)
+    elseif string.find(original:lower(), '%snorth%s*east%s') then
+        direction = "North-East"
+        windower.ffxi.turn(7*math.pi/4)
+    elseif string.find(original:lower(), '%seast%s') then
         direction = "East"
         windower.ffxi.turn(0)
-    elseif string.find(original:lower(), 'yalms west') then
+    elseif string.find(original:lower(), '%swest%s') then
         direction = "West"
         windower.ffxi.turn(math.pi)
-    elseif string.find(original:lower(), 'yalms north') then
+    elseif string.find(original:lower(), '%snorth%s') then
         direction = "North"
         windower.ffxi.turn(3*math.pi/2)
-    elseif string.find(original:lower(), 'yalms south') then
+    elseif string.find(original:lower(), '%ssouth%s') then
         direction = "South"
         windower.ffxi.turn(math.pi/2)
     end
     
     if direction then
-        mark:text(string.format('Direction: [%s]  | Distance: [%.2f]', direction, distance or 0))
+        -- Update the text element with the detected direction
+        mark:visible(true)  -- Ensure the text element is visible
+        mark.value = string.format('NM Direction → [%s] Distance: [%.2f]', direction, distance or 0)
     end
 end)
 
 windower.register_event('addon command', function(command)
     if command:lower() == 'help' then
         windower.add_to_chat(8,'VoidWalker: //VW <command>:')
-        windower.add_to_chat(8,' On, Off (Not case sensitive')
     elseif command:lower() == 'on' then
         if voidwalker_mode == false then
             windower.add_to_chat(8, 'VoidWalker = On')
             voidwalker_mode = true
+            mark:visible(true)
         end
     elseif command:lower() == 'off' then
         if voidwalker_mode == true then
             windower.add_to_chat(8, 'VoidWalker = Off')
+            mark:visible(false)
             voidwalker_mode = false
         end
     end
