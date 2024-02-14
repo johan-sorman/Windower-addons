@@ -1,13 +1,21 @@
-**Author:** [garyfromwork](https://github.com/garyfromwork/ffxi-windower/tree/master/VoidWalker) 
+<sup>**Author:** <br>[garyfromwork](https://github.com/garyfromwork/ffxi-windower/tree/master/VoidWalker), Updated by Melucine
 <br>
-Modified by Melucine
-<br>
+**Version:** <br>1.2.0.0</sup>
 
------------------------
+```
+Changes by Melucine:
+- Reworked settings for texts module so they get imported from a separate file to make code more readable
+- Reworked the texts element to display;
+  General direction
+  Which tier the NM is
+  Traveled Distance
+  Target Distance based on what the /heal responded with, and the general direction (repeated)
+```
+
 
 ## VoidWalker
 
-
+![demo](https://github.com/johan-sorman/Windower-addons/blob/main/addons/Voidwalker/demo-1.jpg?raw=true)
 
 
 
