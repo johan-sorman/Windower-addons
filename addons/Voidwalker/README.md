@@ -8,7 +8,6 @@ Modified by Melucine
 ## VoidWalker
 
 
-![demo](https://github.com/johan-sorman/Windower-addons/blob/main/addons/Voidwalker/demo.jpg)
 
 
 
