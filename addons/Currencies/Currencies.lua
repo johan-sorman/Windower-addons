@@ -20,7 +20,7 @@ default_settings = {
         draggable = true
     },
     text = {
-        font = 'Consolas', size = 11, bold = true
+        font = 'Consolas', size = 11
     },
     bg = {
         visible = true, alpha = 110
