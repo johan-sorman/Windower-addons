@@ -10,30 +10,30 @@ Changes by Melucine
 
 
 
-**Purpose**: 
+**Purpose**: <br>
 To make navigating FFXI's zones a bit easier for new players, and save players
 from alt-tabbing to various websites to see how zones connect.
 
-**Commands**:
-Load the addon:
+**Commands**:<br>
+Load the addon:<br>
 //lua l gps
 
-*Get help and all available commands:*
+*Get help and all available commands:*<br>
 //gps help
-
-*Find exits for current zone:*
+<br>
+*Find exits for current zone:*<br>
 //gps zone
-
-*Find exits for a specific zone (don't send with auto-translate format), with or without quotes ("):*
+<br>
+*Find exits for a specific zone (don't send with auto-translate format), with or without quotes ("):*<br>
 //gps "zone name" 
 
-*Hide the window and display in chat*
-//gps hide
+*Hide the window and display in chat*<br>
+//gps hide<br>
         
-*Hide the chat output and display in window*
+*Hide the chat output and display in window*<br>
 //gps show
-
-*Known Issues:*
-This addon currently cannot process auto-translated phrases or zone names.
-A work around is to auto-translate the zone name in game and backspace a few characters and then retype them.
+<br>
+*Known Issues:*<br>
+This addon currently cannot process auto-translated phrases or zone names.<br>
+A work around is to auto-translate the zone name in game and backspace a few characters and then retype them.<br>
 This removes the auto-translate but keeps the name of the zone.
