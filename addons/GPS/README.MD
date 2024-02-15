@@ -9,10 +9,10 @@ Changes by Melucine
 ```
 
 
-<sup>
+
 **Purpose**: 
 To make navigating FFXI's zones a bit easier for new players, and save players
-from alt-tabbing to various websites to see how zones connect.</sup>
+from alt-tabbing to various websites to see how zones connect.
 
 **Commands**:
 Load the addon:
