@@ -10,7 +10,7 @@ Changes by Melucine
 
 
 
-**Purpose**: <br>
+### Purpose
 To make navigating FFXI's zones a bit easier for new players, and save players
 from alt-tabbing to various websites to see how zones connect.
 
