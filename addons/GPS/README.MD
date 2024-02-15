@@ -1,4 +1,6 @@
-<sup>Author: [Garyfromwork@Asura](https://github.com/garyfromwork/ffxi-windower/tree/master). Modified by Melucine</sup>
+<sup>Author: [Garyfromwork@Asura](https://github.com/garyfromwork/ffxi-windower/tree/master). 
+<br>
+Modified by Melucine</sup>
 
 ```
 Changes by Melucine
