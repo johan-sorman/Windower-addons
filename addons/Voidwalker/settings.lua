@@ -2,8 +2,8 @@ local defaults = {}
 
 defaults.main = {
     pos = {
-        x = 180,
-        y = 765
+        x = 520,
+        y = 500
     },
     text = {
         font = 'Consolas',
@@ -32,8 +32,8 @@ defaults.main = {
 
 defaults.marktxt = {
     pos = {
-        x = 180,
-        y = 765
+        x = 520,
+        y = 500
     },
     text = {
         font = 'Consolas',

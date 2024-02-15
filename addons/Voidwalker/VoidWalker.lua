@@ -14,7 +14,7 @@ defaults = require('settings')
 
 settings = config.load(defaults)
 
-mark = texts.new('NM Direction → [${direction} (Tier: ${tier})]  Traveled Distance: [${distance||%.2f}]  Target Distance: [${target_distance||0} - ${direction] ', settings.marktxt)
+mark = texts.new(' Tier: [${tier}] Traveled Distance: [${distance||%.2f}] → Target Distance: [${target_distance||0} - ${direction] ', settings.marktxt)
 
 voidwalker_mode = true
 local direction = nil
@@ -43,19 +43,29 @@ windower.register_event('prerender', function()
                 local y = marker.y - s.y
                 local z = marker.z - s.z
                 distance = math.sqrt(x * x + y * y + z * z) 
-                mark:text(string.format(' NM Direction → [%s (Tier: %s)]   Traveled Distance: [%.2f]  Target Distance: [%d - %s] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0, direction or 'Unknown'))
+                mark:text(string.format('Tier: [%s] Traveled Distance: [%.2f] Target Distance: [%d - %s]', tier or 'Unknown', distance or 0, target_distance or 0, direction or 'Unknown'))
             else
-                mark:text(' NM Direction → [Unknown (Tier: Unknown)]  Traveled Distance: [0.00]  Target Distance: [0 - Unknown] ')
+                mark:text('Tier: [Unknown] Traveled Distance: [0.00] Target Distance: [0 - Unknown]')
             end
         end      
     end
 
     if voidwalker_mode == true then
+        if tier == 0 then
+            mark:text(string.format('No NM Detected Traveled Distance: [%.2f]', distance or 0))
+        end
         mark:visible(s ~= nil)
     end
 end)
 
+
 windower.register_event('incoming text', function(original, modified)
+    if string.find(original:lower(), 'A monster materializes out of nowhere!') then
+        mark:visible(false)
+        voidwalker_mode = false
+        return
+    end
+    
     local updated = false
     local new_direction = nil 
     local new_tier = nil 
@@ -88,21 +98,30 @@ windower.register_event('incoming text', function(original, modified)
         windower.ffxi.turn(math.pi/2)
     end
 
-    if string.find(original:lower(), '.*there seem to be no monsters.*') then
+    if string.find(original:lower(), 'there seem to be no monsters') then
         new_tier = 0
-    elseif string.find(original:lower(), '.*feebl.*') then
+    elseif string.find(original:lower(), 'feebly') then
         new_tier = 1
-    elseif string.find(original:lower(), '.*soft.*') then
+    elseif string.find(original:lower(), 'softly') then
         new_tier = 2
-    elseif string.find(original:lower(), '.*solid.*') then
+    elseif string.find(original:lower(), 'solid') then
         new_tier = 3
     end
     
+
+
     local distance_pattern = "%s*(%d+)%s*yalms[^%d]*%s*(%d+)"
     local captured_distance, captured_target_distance = string.match(original:lower(), distance_pattern)
     if captured_distance and captured_target_distance then
         new_distance = tonumber(captured_distance)
         new_target_distance = tonumber(captured_target_distance)
+    end
+
+    if string.find(original:lower(), 'there seem to be no monsters') then
+        tier = 0
+        distance = 0
+        target_distance = 0
+        updated = true
     end
 
     if new_direction then
@@ -120,50 +139,61 @@ windower.register_event('incoming text', function(original, modified)
         updated = true
     end
 
-    if new_target_distance then
-        target_distance = new_distance
-        updated = true
-    end
-    
     if updated then
-        
         if tier == 0 then
-            mark:text(' No NM Detected ')
+        local x = 670
+        local y = 500
+            mark:pos(x, y)
+            mark:update()
             mark:visible(true)
-            voidwalker_mode = false       
-
         elseif tier == 1 or tier == 2 or tier == 3 then
-            mark.value = string.format(' NM Direction → [%s (Tier: %s)]   Traveled Distance: [%.2f]  Target Distance: [%d - %s] ', direction or 'Unknown', tier or 'Unknown', distance or 0, target_distance or 0, direction or 'Unknown')
+        local x = 470
+        local y = 500
+            mark:pos(x, y)
+            -- mark.value = string.format(' Tier: [%s] Traveled Distance: [%.2f] → Target Distance: [%d - %s] ', tier or 'Unknown', distance or 0, target_distance or 0, direction or 'Unknown')
             mark:visible(true)
-            voidwalker_mode = true
+            
         end
-    end
-    if string.find(original:lower(), 'A monster materializes out of nowhere!') then
-        mark:visible(false)
-        voidwalker_mode = false
     end
 end)
 
 
 
-windower.register_event('addon command', function(command)
-    if command:lower() == 'help' then
+
+windower.register_event('addon command', function(command, ...)
+    command = command and command:lower() or 'help'
+    local args = {...}
+    
+    if command == 'help' then
         log('Commands:')
-        log('//vw help - This message')
-        log('//vw on - display textbox and track VNM')
-        log('//vw off - hide textbox and disable tracking')
-    elseif command:lower() == 'on' then
+        log('//vw help - Display command help')
+        log('//vw pos <x> <y> - Set the position of the text box')
+        log('//vw on - Display the text box and start tracking VNM')
+        log('//vw off - Hide the text box and stop tracking VNM')
+    elseif command == 'pos' then
+        local x = tonumber(args[1])
+        local y = tonumber(args[2])
+        
+        if x and y then
+            mark:pos(x, y)
+            log('Position set to X: ' .. x .. ', Y: ' .. y)
+        else
+            log('Invalid arguments. Usage: //vw pos <x> <y>')
+        end
+    elseif command == 'on' then
         if voidwalker_mode == false then
-            windower.add_to_chat(100, string.format('\30\03[%s]\30\01 ON', 'VoidWalker'))
+            windower.add_to_chat(100, string.format('\30\03[%s]\30\01 - ON', 'VoidWalker'))
             voidwalker_mode = true
             mark:visible(true)
         end
-    elseif command:lower() == 'off' then
+    elseif command == 'off' then
         if voidwalker_mode == true then
-            windower.add_to_chat(100, string.format('\30\03[%s]\30\01 OFF', 'VoidWalker'))
+            windower.add_to_chat(100, string.format('\30\03[%s]\30\01 - OFF', 'VoidWalker'))
             mark:visible(false)
             voidwalker_mode = false
         end
+    else
+        log('Invalid command. Type //vw help for a list of commands.')
     end
 end)
 
