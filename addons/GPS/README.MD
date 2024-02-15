@@ -1,4 +1,4 @@
-Author: [Garyfromwork@Asura](https://github.com/garyfromwork/ffxi-windower/tree/master). Modified by Melucine
+<sup>Author: [Garyfromwork@Asura](https://github.com/garyfromwork/ffxi-windower/tree/master). Modified by Melucine</sup>
 
 ```
 Changes by Melucine
@@ -9,7 +9,7 @@ Changes by Melucine
 ```
 
 
-
+<sup>
 Purpose: 
 	To make navigating FFXI's zones a bit easier for new players, and save players
  	from alt-tabbing to various websites to see how zones connect.
@@ -36,4 +36,4 @@ Commands:
 Known Issues:
 	This addon currently cannot process auto-translated phrases or zone names.
 	A work around is to auto-translate the zone name in game and backspace a few characters and then retype them.
-	This removes the auto-translate but keeps the name of the zone.
+	This removes the auto-translate but keeps the name of the zone.</sup>
