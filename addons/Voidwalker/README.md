@@ -11,6 +11,7 @@ Changes by Melucine:
   Traveled Distance
   Target Distance based on what the /heal responded with, and the general direction (repeated)
   (Re)Styling add_to_chat & logging messages
+  Adding additional commands
 ```
 
 
