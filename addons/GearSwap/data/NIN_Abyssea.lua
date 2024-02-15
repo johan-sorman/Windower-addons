@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------------------
 -- Custom Functions for RedProc in Abyssea
--- It's not compatable with Mote includes, suggestion is keep it in a seperate GS profile
+-- It's not compatible with Mote includes, suggestion is keep it in a seperate GS profile
 --------------------------------------------------------------------------------------------
 -- Set up texts element
 --------------------------------------------------------------------------------------------
