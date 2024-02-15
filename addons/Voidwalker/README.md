@@ -10,6 +10,7 @@ Changes by Melucine:
   Which tier the NM is
   Traveled Distance
   Target Distance based on what the /heal responded with, and the general direction (repeated)
+  (Re)Styling add_to_chat & logging messages
 ```
 
 
