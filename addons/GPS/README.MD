@@ -22,10 +22,10 @@ from alt-tabbing to various websites to see how zones connect.
 
 <sup>*Get help and all available commands:*<br>
 //gps help</sup>
-<br>
+<br><br>
 <sup>*Find exits for current zone:*<br>
 //gps zone</sup>
-<br>
+<br><br>
 <sup>*Find exits for a specific zone (don't send with auto-translate format), with or without quotes ("):*<br>
 //gps "zone name" </sup>
 
@@ -34,7 +34,7 @@ from alt-tabbing to various websites to see how zones connect.
         
 <sup>*Hide the chat output and display in window*<br>
 //gps show</sup>
-<br>
+<br><br>
 ### Known Issues:
 <sup>This addon currently cannot process auto-translated phrases or zone names.
 <br>
