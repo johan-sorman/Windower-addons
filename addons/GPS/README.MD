@@ -14,8 +14,8 @@ Changes by Melucine
 To make navigating FFXI's zones a bit easier for new players, and save players
 from alt-tabbing to various websites to see how zones connect.
 
-**Commands**:<br>
-Load the addon:<br>
+### Commands
+<sup>Load the addon:<br>
 //lua l gps
 
 *Get help and all available commands:*<br>
@@ -31,7 +31,7 @@ Load the addon:<br>
 //gps hide<br>
         
 *Hide the chat output and display in window*<br>
-//gps show
+//gps show</sup>
 <br>
 ### Known Issues:
 <sup>This addon currently cannot process auto-translated phrases or zone names.
