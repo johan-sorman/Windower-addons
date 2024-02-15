@@ -33,10 +33,9 @@ Load the addon:<br>
 *Hide the chat output and display in window*<br>
 //gps show
 <br>
-## Known Issues:
-<br>
-This addon currently cannot process auto-translated phrases or zone names.
+### Known Issues:
+<sup>This addon currently cannot process auto-translated phrases or zone names.
 <br>
 A work around is to auto-translate the zone name in game and backspace a few characters and then retype them.
 <br>
-This removes the auto-translate but keeps the name of the zone.
+This removes the auto-translate but keeps the name of the zone.</sup>
