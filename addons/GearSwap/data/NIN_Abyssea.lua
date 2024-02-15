@@ -4,7 +4,6 @@
 --------------------------------------------------------------------------------------------
 -- Set up texts element
 --------------------------------------------------------------------------------------------
-
 texts = require('texts')
 local msg_text = texts.new('', {
     pos = { x = 400, y = 450 }, 
@@ -12,19 +11,15 @@ local msg_text = texts.new('', {
     bg = { visible = true, alpha = 90 },
     padding = 5, 
 })
-
 --------------------------------------------------------------------------------------------
 -- Set Keybinds
 --------------------------------------------------------------------------------------------
-
 send_command('bind f12 gs c toggle MainSet set')
 send_command('bind ^f12 gs c toggle RedProc set')
 -- ^ = CTRL, ! = ALT
-
 --------------------------------------------------------------------------------------------
 -- Welcome Message
 --------------------------------------------------------------------------------------------
-
 local player_name= player.name
 local main_job = player.main_job
 local sub_job = player.sub_job
@@ -34,11 +29,9 @@ local sub_job_level = player.sub_job_level
 add_to_chat(122, 'Welcome, ' .. player_name ..'')
 add_to_chat(122, 'Loaded Abyssea Lua!')
 add_to_chat(122, 'Current Job: ' .. main_job .. main_job_level .. '/' .. sub_job .. sub_job_level .. '')
-
 --------------------------------------------------------------------------------------------
 -- Main Functions
 --------------------------------------------------------------------------------------------
-
 RedProc_ind = 1
 
 function update_mode()
@@ -64,11 +57,9 @@ function ChangeGear(GearSet)
     equipSet = GearSet
     equip(GearSet)
 end
-
 --------------------------------------------------------------------------------------------
 -- Get Sets
 --------------------------------------------------------------------------------------------
-
 function get_sets()
     sets.RedProc = {}
     sets.RedProc.index = { 'MainSet', 'Staff', 'Dagger', 'Sword', 'GreatSword', 'Scythe', 'Polearm', 'Katana', 'GreatKatana', 'Club' } 
@@ -90,19 +81,12 @@ function get_sets()
 
     update_mode()
 end
-
-
 --------------------------------------------------------------------------------------------
 -- Display Texts box
 --------------------------------------------------------------------------------------------
-
 msg_text:show()
 
 function file_unload()
-    send_command('unbind ^`')   
-    send_command('unbind !=')
-    send_command('unbind ^[')
-    send_command('unbind ![')
-    send_command('unbind @f9')
-    send_command('unbind @w')
+    send_command('unbind ^f12')   
+    send_command('unbind f12')
 end
