@@ -7,7 +7,7 @@
 
 #### Commands
 
-`gs c toggle mainset set` - Equip your mainset (to kill the NM as fast as possible after proc)<br>
+`gs c toggle mainset set` <br> Equip your mainset (to kill the NM as fast as possible after proc)<br>
 <br><br>
 `gs c toggle redproc set` <br>Equip next weapon in list<br>
 <br>
