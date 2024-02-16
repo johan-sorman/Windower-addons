@@ -19,7 +19,7 @@ Hide the textbox
 Show the textbox
 <br><br>
 `gs c ws <element>`<br>
-Will use the mapped ws for current weaponset and given element. I.E: "Staff" equipped and command is set to ws light, it will use "Starburst"
+Will use the mapped ws for current weaponset and given element. I.E: "Staff" equipped and command is set to `ws light`, it will use "Starburst"
 
 
 #### Assistance
