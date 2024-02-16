@@ -16,7 +16,7 @@ send_command('bind ^f12 gs c toggle RedProc set') -- Toggle between WeaponSet
 send_command('bind f11 exec redproc') -- prints a list of element and which weapon, in case you don't remember.
 -- ^ = CTRL, ! = ALT
 
-[[
+--[[
 
 Save as redproc.txt and store in your root directory for Windower/Scripts:
 
