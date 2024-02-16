@@ -14,6 +14,7 @@ It goes in this order: `{'Main', 'Staff', 'Dagger', 'Sword', 'GreatSword', 'Scyt
 <br>
 `gs c hide`<br>
 Hide the textbox
+<br>
 `gs c ws <element>`<br>
 Will use the mapped ws for current weaponset and given element. I.E: "Staff" equipped and command is set to ws light, it will use "Starburst"
 
