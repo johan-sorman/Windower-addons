@@ -125,6 +125,8 @@ function self_command(command)
     elseif command:sub(1, 3) == 'ws ' then
         local element = command:sub(4)
         use_element_ws(element)
+    elseif command == "hide" then
+        msg_text:hide()
     end
 end
 
