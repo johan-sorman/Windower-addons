@@ -8,11 +8,11 @@
 #### Commands
 
 `gs c toggle mainset set` <br> Equip your mainset (to kill the NM as fast as possible after proc)<br>
-<br><br>
+<br>
 `gs c toggle redproc set` <br>Equip next weapon in list<br>
 <br>
     It goes in this order: `{'Main', 'Staff', 'Dagger', 'Sword', 'GreatSword', 'Scythe', 'Polearm', 'Katana', 'GreatKatana', 'Club'}`<br>
-<br><br>
+<br>
 `gs c ws <element>`<br>
 Will use the mapped ws for current weaponset and given element. I.E: "Staff" equipped and command is set to ws light, it will use "Starburst"
 
