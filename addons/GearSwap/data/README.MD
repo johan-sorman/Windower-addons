@@ -15,7 +15,6 @@ It goes in this order: `{'Main', 'Staff', 'Dagger', 'Sword', 'GreatSword', 'Scyt
 `gs c hide`<br>
 Hide the textbox
 <br><br>
-<br>
 `gs c show`<br>
 Show the textbox
 <br><br>
