@@ -21,7 +21,7 @@ send_command('bind f11 exec redproc')
 --------------------------------------------------------------------------------------------
 RedProc_ind = 1
 
-local allowd_zones = {
+local allowed_zones = {
     'Abyssea - Tahrongi', 
     'Abyssea - La Theine', 
     'Abyssea - Konschtat', 
@@ -35,7 +35,7 @@ local allowd_zones = {
 }
 
 local function in_allowed_zones()
-    return T(allowd_zones):contains(world.area)
+    return T(allowed_zones):contains(world.area)
 end
 
 local ws_guide = {
