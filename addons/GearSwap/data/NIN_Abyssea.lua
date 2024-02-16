@@ -11,33 +11,16 @@ local msg_text = texts.new('', {
 --------------------------------------------------------------------------------------------
 -- Set Keybinds
 --------------------------------------------------------------------------------------------
-send_command('bind f12 gs c toggle MainSet set') -- Toggle back to your MainSet
-send_command('bind ^f12 gs c toggle RedProc set') -- Toggle between WeaponSet
-send_command('bind f11 exec redproc') -- prints a list of element and which weapon, in case you don't remember.
+send_command('bind f12 gs c toggle MainSet set')
+send_command('bind ^f12 gs c toggle RedProc set')
 -- ^ = CTRL, ! = ALT
-
---[[
-
-Save as redproc.txt and store in your root directory for Windower/Scripts:
-
-input /echo Red Procs
-input /echo ---------------------------------
-input /echo Wind: Dagger & Great Katana
-input /echo Fire: Sword
-input /echo Ice: Great Sword
-input /echo Lightning: Polearm
-input /echo Earth: Staff
-input /echo Darkness: Dagger, Scythe, Katana
-input /echo Light: Club, Great Katana, Sword, Staff
-
-]]
 
 --------------------------------------------------------------------------------------------
 -- Main Functions
 --------------------------------------------------------------------------------------------
 RedProc_ind = 1
 
-local allowed_zones = {
+local allowd_zones = {
     'Abyssea - Tahrongi', 
     'Abyssea - La Theine', 
     'Abyssea - Konschtat', 
@@ -51,7 +34,7 @@ local allowed_zones = {
 }
 
 local function in_allowed_zones()
-    return T(allowed_zones):contains(world.area)
+    return T(allowd_zones):contains(world.area)
 end
 
 local ws_guide = {
@@ -116,12 +99,40 @@ function update_mode(mode, element)
     if element then
         local element_display = element:sub(1, 1):upper() .. element:sub(2)
         current_element = element_display
+        redproc_executed = false  
+        if not redproc_executed then
+            if current_element == "Wind" then
+                equip(sets.RedProc.Dagger)
+                add_to_chat(100, "Use Cyclone or Tachi: Jinpu!")
+            elseif current_element == "Fire" then
+                equip(sets.RedProc.Sword)
+                add_to_chat(100, "Use Red Lotus Blade!")
+            elseif current_element == "Ice" then
+                equip(sets.RedProc.GreatSword)
+                add_to_chat(100, "Use Freezebite!")
+            elseif current_element == "Lightning" then
+                equip(sets.RedProc.Polearm)
+                add_to_chat(100, "Use Raiden Thrust!")
+            elseif current_element == "Earth" then
+                equip(sets.RedProc.Staff)
+                add_to_chat(100, "Use Earth Crusher!")
+            elseif current_element == "Darkness" then
+                equip(sets.RedProc.Dagger)
+                add_to_chat(100, "Use Energy Drain, Shadow of Death or Blade: Ei!")
+            elseif current_element == "Light" then
+                equip(sets.RedProc.Sword)
+                add_to_chat(100, "Use Seraph Blade, Seraph Strike, Starburst or Tachi: Koki!")
+            end
+            redproc_executed = true
+        end
     end
     
     local proc_display = tostring(proc_status):sub(1, 1):upper() .. tostring(proc_status):sub(2)
     
     msg_text:text('Red Proc Set\nMode: ' .. current_mode .. '\n------------------\nWeak To: ' .. current_element .. '\nProc Status: ' .. proc_display)
 end
+
+
 
 function self_command(command)
     command = command:lower() 
@@ -217,5 +228,4 @@ end)
 function file_unload()
     send_command('unbind f12')
     send_command('unbind ^f12')
-    send_command('unbind f11')
 end
