@@ -57,7 +57,8 @@ local ws_guide = {
 }
 
 local current_mode = "None"
-local current_element = "None"
+local current_element = "Unknown"
+local proc_status = false
 
 windower.register_event('incoming text', function(original, modified)
     local pattern = "The fiend appears vulnerable to (%a+) elemental weapon skills!"
@@ -65,6 +66,11 @@ windower.register_event('incoming text', function(original, modified)
 
     if elemental_attribute then
         update_mode(nil, elemental_attribute)
+    end
+
+    if original:contains("The fiend is frozen in its tracks.") then
+        proc_status = true
+        update_mode(nil, nil)
     end
 end)
 
@@ -79,7 +85,9 @@ function update_mode(mode, element)
         current_element = element_display
     end
     
-    msg_text:text('Red Proc Set\nMode: ' .. current_mode .. '\nWeak To: ' .. current_element)
+    local proc_display = tostring(proc_status):sub(1, 1):upper() .. tostring(proc_status):sub(2)
+    
+    msg_text:text('Red Proc Set\nMode: ' .. current_mode .. '\n-------------------\nWeak To: ' .. current_element .. '\nProc Status: ' .. proc_display)
 end
 
 function self_command(command)
@@ -154,7 +162,7 @@ end
 msg_text:show()
 
 windower.register_event('zone change', function(new_zone_id, old_zone_id)
-    current_element = 'None'
+    current_element = 'Unknown'
     update_mode(nil, nil)
 end)
 
