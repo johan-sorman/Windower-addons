@@ -20,7 +20,7 @@ Will use the mapped ws for current weaponset and given element. I.E: "Staff" equ
 
 A texts module is implemented, meaning a GUI textbox will appear, given you're in a Abyssea area:
 
-"<insert picture>"
+![textbox](https://github.com/johan-sorman/Windower-addons/blob/main/addons/GearSwap/data/nin_demo.jpg?raw=true)
 
 There is minimal automation built in, other than using correct WS with a command instead of configure multiple macros. 
 
