@@ -11,9 +11,9 @@ local msg_text = texts.new('', {
 --------------------------------------------------------------------------------------------
 -- Set Keybinds
 --------------------------------------------------------------------------------------------
-send_command('bind f12 gs c toggle MainSet set')
-send_command('bind ^f12 gs c toggle RedProc set')
-send_command('bind f11 exec redproc')
+send_command('bind f12 gs c toggle MainSet set') -- Toggle back to your MainSet
+send_command('bind ^f12 gs c toggle RedProc set') -- Toggle between WeaponSet
+send_command('bind f11 exec redproc') -- prints a list of element and which weapon, in case you don't remember.
 -- ^ = CTRL, ! = ALT
 
 --------------------------------------------------------------------------------------------
