@@ -127,6 +127,8 @@ function self_command(command)
         use_element_ws(element)
     elseif command == "hide" then
         msg_text:hide()
+    elseif command == "show" then
+        msg_text:show()
     end
 end
 
