@@ -21,6 +21,23 @@ send_command('bind f11 exec redproc')
 --------------------------------------------------------------------------------------------
 RedProc_ind = 1
 
+local allowd_zones = {
+    'Abyssea - Tahrongi', 
+    'Abyssea - La Theine', 
+    'Abyssea - Konschtat', 
+    'Abyssea - Attohwa', 
+    'Abyssea - Misareaux', 
+    'Abyssea - Vunkerl', 
+    'Abyssea - Altepa',
+    'Abyssea - Grauberg',
+    'Abyssea - Uleguerand',
+    'Abyssea - Empyreal Paradox',
+}
+
+local function in_allowed_zones()
+    return T(allowd_zones):contains(world.area)
+end
+
 local ws_guide = {
     main = {},
     dagger = {
@@ -87,7 +104,7 @@ function update_mode(mode, element)
     
     local proc_display = tostring(proc_status):sub(1, 1):upper() .. tostring(proc_status):sub(2)
     
-    msg_text:text('Red Proc Set\nMode: ' .. current_mode .. '\n-------------------\nWeak To: ' .. current_element .. '\nProc Status: ' .. proc_display)
+    msg_text:text('Red Proc Set\nMode: ' .. current_mode .. '\n------------------\nWeak To: ' .. current_element .. '\nProc Status: ' .. proc_display)
 end
 
 function self_command(command)
@@ -159,11 +176,22 @@ end
 --------------------------------------------------------------------------------------------
 -- Display Texts box
 --------------------------------------------------------------------------------------------
-msg_text:show()
+-- Display only inside Abyssea areas
+--------------------------------------------------------------------------------------------
+if in_allowed_zones() then
+    msg_text:show()
+else
+    msg_text:hide()
+end
+
+--------------------------------------------------------------------------------------------
+-- Reset values on zone change
+--------------------------------------------------------------------------------------------
 
 windower.register_event('zone change', function(new_zone_id, old_zone_id)
-    current_element = 'Unknown'
-    update_mode(nil, nil)
+current_element = 'Unknown'
+proc_status = false
+update_mode(nil, nil)
 end)
 
 function file_unload()
