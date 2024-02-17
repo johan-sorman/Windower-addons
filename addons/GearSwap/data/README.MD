@@ -28,6 +28,6 @@ A texts module is implemented, meaning a GUI textbox will appear, given you're i
 
 ![textbox](https://github.com/johan-sorman/Windower-addons/blob/main/addons/GearSwap/data/nin_demo.jpg?raw=true)
 
-There is minimal automation built in, other than using correct WS with a command instead of configure multiple macros. 
+There is minimal automation built in, other than using correct WS with a command instead of configure multiple macros, and displaying message to which WS's to use.
 
 Don't ask me to automate anything. 
